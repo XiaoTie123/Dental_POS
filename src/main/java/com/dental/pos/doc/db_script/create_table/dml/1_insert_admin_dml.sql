@@ -1,0 +1,2 @@
+INSERT INTO admin (name, email, password, created_at, updated_at, role, del_flg)
+VALUES ('Admin User', 'admin@gmail.com', '$2a$10$F69hwA8s1Jlg0T3kXWsBZ.XjYMl0CymNVR2rSOBNur28RLx8AVLMi', NOW(), NOW(), 1, 0);
