@@ -7,7 +7,7 @@
                     <ul class="user_profile_dd">
                         <li>
                             <a class="dropdown-toggle" data-toggle="dropdown">
-                                <img class="img-responsive rounded-circle" src="static/images/layout_img/user_img.jpg" alt="#" />
+                                <img class="img-responsive rounded-circle" src="${pageContext.request.contextPath}/static/images/layout_img/logo.jpg" alt="#" />
                                 <span class="name_user">admin@gmail.com</span>
                             </a>
                             <div class="dropdown-menu">

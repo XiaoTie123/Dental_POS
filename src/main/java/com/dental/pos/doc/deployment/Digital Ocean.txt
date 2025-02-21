@@ -1,0 +1,114 @@
+Java Spring Boot Project Deployment in Digital Ocean
+================
+1. Create Project on Digital Ocean
+2. Create Droplets on Digital Ocean
+3. Login Ubuntu Server
+4. Install Java for Java Spring Boot Project
+5. Install Maven
+6. Install Nginx
+7. Install Git
+
+you can't access permission ssh 
+===========================
+cd %USERPROFILE%\.ssh
+notepad known_hosts
+ssh-keygen -R 206.189.95.225
+ssh root@206.189.95.225
+yes
+
+Install Java
+============================
+sudo apt update
+
+for Java 11
+===========
+sudo apt install openjdk-11-jdk -y
+
+for Java 8
+==========
+sudo apt install openjdk-8-jdk -y
+
+check Java Version
+==================
+java -version
+
+
+Install Maven
+=============
+sudo apt install maven
+
+Install Nginx
+=============
+sudo apt update
+sudo apt install nginx
+sudo ufw allow 'Nginx Full'
+systemctl status nginx
+
+Install Git
+===========
+sudo apt install git
+
+
+Install Tomcat
+===============================================
+1.ssh root@your_droplet_ip
+2.cd /tmp
+3.https://downloads.apache.org/tomcat/tomcat-10/v10.x.xx/bin/apache-tomcat-10.x.xx.tar.gz (check version number)
+4.wget https://downloads.apache.org/tomcat/tomcat-10/v10.x.xx/bin/apache-tomcat-10.x.xx.tar.gz
+5.ls (check tomcat version)sudo systemctl daemon-reload
+6.tar xvf apache-tomcat-10.x.xx.tar.gz
+7.sudo mv apache-tomcat-10.x.xx /opt/tomcat
+
+Tomcat Implementation
+============================================================
+sudo groupadd tomcat
+sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+sudo chown -R tomcat:tomcat /opt/tomcat
+ls -ld /opt/tomcat
+sudo chmod +x /opt/tomcat/bin/*.sh
+
+sudo systemctl restart tomcat(if error)
+sudo nano /etc/systemd/system/tomcat.service
+===============================================
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+User=tomcat
+Group=tomcat
+Environment="JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64"
+Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
+Environment="CATALINA_HOME=/opt/tomcat"
+Environment="CATALINA_BASE=/opt/tomcat"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+Environment="JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom"
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+====================================
+Save the file and exit (Ctrl+O, Enter, Ctrl+X).
+
+sudo systemctl daemon-reload
+sudo systemctl enable tomcat
+sudo systemctl start tomcat
+sudo systemctl status tomcat
+
+===============================================
+Check File Permissions
+Ensure Tomcat has access to the deployed files:
+
+sudo chmod -R 755 /opt/tomcat/webapps/ROOT
+sudo chown -R tomcat:tomcat /opt/tomcat/webapps/ROOT
+
+
+Image path solution
+====================
+chmod -R 755 /usr/payment/images
+<Context docBase="/usr/payment/images" path="/payment-images" />
+systemctl restart tomcat
+
