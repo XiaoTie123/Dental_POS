@@ -10,4 +10,3 @@ Project Metadata Artifact = pos
 Project Metadata Name = pos
 Project Metadata Description = Dental Clinic For POS System
 Project Metadata Package Name = com.dental.pos
-
