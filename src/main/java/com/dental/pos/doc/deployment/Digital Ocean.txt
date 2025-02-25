@@ -7,6 +7,11 @@ Java Spring Boot Project Deployment in Digital Ocean
 5. Install Maven
 6. Install Nginx
 7. Install Git
+8. Git Clone Repo
+9. Domain add On Digital Ocean
+10. Add Nginx
+11. Add SSH
+
 
 you can't access permission ssh 
 ===========================
@@ -48,67 +53,46 @@ Install Git
 ===========
 sudo apt install git
 
+Git Clone
+=========
+git clone https://XiaoTie123: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@github.com/XiaoTie123/One_Dental_POS.git
 
-Install Tomcat
-===============================================
-1.ssh root@your_droplet_ip
-2.cd /tmp
-3.https://downloads.apache.org/tomcat/tomcat-10/v10.x.xx/bin/apache-tomcat-10.x.xx.tar.gz (check version number)
-4.wget https://downloads.apache.org/tomcat/tomcat-10/v10.x.xx/bin/apache-tomcat-10.x.xx.tar.gz
-5.ls (check tomcat version)sudo systemctl daemon-reload
-6.tar xvf apache-tomcat-10.x.xx.tar.gz
-7.sudo mv apache-tomcat-10.x.xx /opt/tomcat
+Token
+=====
+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
 
-Tomcat Implementation
-============================================================
-sudo groupadd tomcat
-sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
-sudo chown -R tomcat:tomcat /opt/tomcat
-ls -ld /opt/tomcat
-sudo chmod +x /opt/tomcat/bin/*.sh
+Add Nginx
+=========
+sudo vi /etc/nginx/sites-available/onedentalclinic.xyz
 
-sudo systemctl restart tomcat(if error)
-sudo nano /etc/systemd/system/tomcat.service
-===============================================
-[Unit]
-Description=Apache Tomcat Web Application Container
-After=network.target
+server {
+    server_name onedentalclinic.xyz;
+    index index.html index.htm;
+    access_log /var/log/nginx/onedentalclinic.log;
+    error_log  /var/log/nginx/onedentalclinic-error.log error;
 
-[Service]
-Type=forking
-User=tomcat
-Group=tomcat
-Environment="JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64"
-Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
-Environment="CATALINA_HOME=/opt/tomcat"
-Environment="CATALINA_BASE=/opt/tomcat"
-Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
-Environment="JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom"
-ExecStart=/opt/tomcat/bin/startup.sh
-ExecStop=/opt/tomcat/bin/shutdown.sh
-Restart=on-failure
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:8080;
+        proxy_redirect off;
+    }
+}
 
-[Install]
-WantedBy=multi-user.target
+sudo ln -s /etc/nginx/sites-available/onedentalclinic.xyz /etc/nginx/sites-enabled/onedentalclinic.xyz
+
+sudo nginx -t
+
+sudo nginx -s reload
+
+sh startup.sh
+
+Add SSL Certificate using Lets Enrypt
 ====================================
-Save the file and exit (Ctrl+O, Enter, Ctrl+X).
+sudo apt install snapd
 
-sudo systemctl daemon-reload
-sudo systemctl enable tomcat
-sudo systemctl start tomcat
-sudo systemctl status tomcat
+sudo snap install --classic certbot
 
-===============================================
-Check File Permissions
-Ensure Tomcat has access to the deployed files:
-
-sudo chmod -R 755 /opt/tomcat/webapps/ROOT
-sudo chown -R tomcat:tomcat /opt/tomcat/webapps/ROOT
-
-
-Image path solution
-====================
-chmod -R 755 /usr/payment/images
-<Context docBase="/usr/payment/images" path="/payment-images" />
-systemctl restart tomcat
-
+sudo certbot --nginx -d onedentalclinic.xyz
