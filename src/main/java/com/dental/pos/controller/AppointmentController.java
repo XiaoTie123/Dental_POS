@@ -2,8 +2,7 @@ package com.dental.pos.controller;
 
 import com.dental.pos.dto.appointment.AppointmentDto;
 import com.dental.pos.dto.appointment.AppointmentSearchDto;
-import com.dental.pos.dto.patient.PatientSearchDto;
-import com.dental.pos.exception.PatientNotFoundException;
+import com.dental.pos.exception.AppointmentNotFoundException;
 import com.dental.pos.service.AppointmentService;
 import com.dental.pos.service.PatientService;
 import com.dental.pos.util.enums.Doctor;
@@ -32,13 +31,13 @@ public class AppointmentController {
     public String listAppointment(@RequestParam(defaultValue = "0") int page, Model model) {
         int pageSize = 10;
         try {
-            Page<AppointmentDto> patientPage = appointmentService.getAllAppointment(PageRequest.of(page, pageSize));
-            model.addAttribute("appointmentPage", patientPage);
+            Page<AppointmentDto> appointmentDtoPage = appointmentService.getAllAppointment(PageRequest.of(page, pageSize));
+            model.addAttribute("appointmentPage", appointmentDtoPage);
             model.addAttribute("doctorList", Doctor.getAll());
-        } catch (PatientNotFoundException e) {
+        } catch (AppointmentNotFoundException e) {
             model.addAttribute("appointmentPage", Page.empty()); // Empty page instead of error
             model.addAttribute("doctorList", Doctor.getAll());
-            model.addAttribute("searchDto", new PatientSearchDto());
+            model.addAttribute("searchDto", new AppointmentSearchDto());
         }
         return "appointment/appointmentList";
     }
@@ -50,10 +49,10 @@ public class AppointmentController {
         int pageSize = 10;
 
         try {
-            Page<AppointmentDto> patientPage = appointmentService.searchAppointment(searchDto, PageRequest.of(page, pageSize));
-            model.addAttribute("appointmentPage", patientPage);
+            Page<AppointmentDto> appointmentDtoPage = appointmentService.searchAppointment(searchDto, PageRequest.of(page, pageSize));
+            model.addAttribute("appointmentPage", appointmentDtoPage);
             model.addAttribute("doctorList", Doctor.getAll());
-        } catch (PatientNotFoundException e) {
+        } catch (AppointmentNotFoundException e) {
             model.addAttribute("appointmentPage", Page.empty()); // Empty page instead of error
             model.addAttribute("doctorList", Doctor.getAll());
             model.addAttribute("errorMessage", e.getMessage());
@@ -61,7 +60,7 @@ public class AppointmentController {
         return "appointment/appointmentList";
     }
 
-    // Show Create Patient Form
+    // Show Create Appointment Form
     @GetMapping("/create")
     public String createAppointmentForm(Model model) {
         model.addAttribute("appointment", new AppointmentDto());
@@ -72,14 +71,14 @@ public class AppointmentController {
         return "appointment/appointmentCreate";
     }
 
-    // Save Patient
+    // Save Appointment
     @PostMapping("/save")
     public String saveAppointment(@ModelAttribute AppointmentDto appointmentDto) {
         appointmentService.saveAppointment(appointmentDto);
         return "redirect:/appointment";
     }
 
-    // Show Edit Patient Form
+    // Show Edit Appointment Form
     @GetMapping("/edit/{id}")
     public String editAppointmentForm(@PathVariable Long id, Model model) {
         Optional<AppointmentDto> appointmentDto = appointmentService.getAppointmentById(id);
@@ -102,7 +101,7 @@ public class AppointmentController {
     }
 
 
-    // Delete Patient
+    // Delete Appointment
     @GetMapping("/delete/{id}")
     public String deleteAppointment(@PathVariable Long id) {
         appointmentService.deleteAppointment(id);

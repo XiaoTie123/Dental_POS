@@ -1,5 +1,6 @@
 package com.dental.pos.util.common;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.logging.log4j.LogManager;
@@ -8,6 +9,12 @@ import org.apache.logging.log4j.Logger;
 public class CommonUtil {
 
 	private static final Logger LOG = LogManager.getLogger();
+
+	private static final DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+	public static String formatNumberDouble(double amount) {
+		return decimalFormat.format(amount);
+	}
 
 	public static String dateToString(String format, Date date) {
 		if (date == null) {

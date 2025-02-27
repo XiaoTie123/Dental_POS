@@ -2,20 +2,15 @@ package com.dental.pos.service.impl;
 
 import com.dental.pos.dto.appointment.AppointmentDto;
 import com.dental.pos.dto.appointment.AppointmentSearchDto;
-import com.dental.pos.dto.patient.PatientSearchDto;
 import com.dental.pos.entity.Appointment;
 import com.dental.pos.entity.Patient;
-import com.dental.pos.exception.PatientNotFoundException;
+import com.dental.pos.exception.AppointmentNotFoundException;
 import com.dental.pos.repository.appointment.AppointmentRepository;
 import com.dental.pos.service.AppointmentService;
 import com.dental.pos.util.common.CommonConstants;
 import com.dental.pos.util.common.CommonUtil;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -30,22 +25,22 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public Page<AppointmentDto> getAllAppointment(Pageable pageable) {
-        Page<Appointment> patientPage = appointmentRepository.findActiveAppointment(pageable);
-        if (patientPage.isEmpty()) {
-            throw new PatientNotFoundException("No active patients found for the given search criteria.");
+        Page<Appointment> appintmentPage = appointmentRepository.findActiveAppointment(pageable);
+        if (appintmentPage.isEmpty()) {
+            throw new AppointmentNotFoundException("No active appointment found for the given search criteria.");
         }
-        return patientPage.map(this::convertToDto);
+        return appintmentPage.map(this::convertToDto);
     }
 
     @Override
     public Page<AppointmentDto> searchAppointment(AppointmentSearchDto searchDto, Pageable pageable) {
-        Page<Appointment> patientPage = appointmentRepository.searchAppointment(searchDto, pageable);
+        Page<Appointment> appointmentPage = appointmentRepository.searchAppointment(searchDto, pageable);
 
-        if (patientPage.isEmpty()) {
-            throw new PatientNotFoundException("No active patients found for the given search criteria.");
+        if (appointmentPage.isEmpty()) {
+            throw new AppointmentNotFoundException("No active appointment found for the given search criteria.");
         }
 
-        return patientPage.map(this::convertToDto);
+        return appointmentPage.map(this::convertToDto);
     }
 
     private AppointmentDto convertToDto(Appointment appointment) {
@@ -58,7 +53,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     public void saveAppointment(AppointmentDto appointmentDto) {
         if (appointmentDto == null) {
-            throw new IllegalArgumentException("PatientDto cannot be null");
+            throw new IllegalArgumentException("AppointmentDto cannot be null");
         }
 
         Patient resultPatient = new Patient();
@@ -81,7 +76,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     public void updateAppointment(AppointmentDto appointmentDto) {
         Appointment appointment = appointmentRepository.findById(appointmentDto.getAppointmentId())
-                .orElseThrow(() -> new PatientNotFoundException("Patient not found"));
+                .orElseThrow(() -> new AppointmentNotFoundException("Appointment not found"));
         appointment.setStatus(appointmentDto.getStatus());
         appointment.setUpdatedTime(new Date());
         appointmentRepository.save(appointment);
