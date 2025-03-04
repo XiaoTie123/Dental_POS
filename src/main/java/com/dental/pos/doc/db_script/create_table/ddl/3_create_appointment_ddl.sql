@@ -12,5 +12,5 @@ CREATE TABLE `appointment` (
     `updated_at` DATETIME DEFAULT NULL,
     `del_flg` TINYINT(1) NOT NULL COMMENT 'del_flg',
     PRIMARY KEY (`appointment_id`) USING BTREE,
-    CONSTRAINT `fk_patient_id` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`patient_id`)
+    CONSTRAINT `fk1_patient_id` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`patient_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='appointment';

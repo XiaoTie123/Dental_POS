@@ -1,8 +1,10 @@
 package com.dental.pos.service.impl;
 
+import com.dental.pos.dto.patient.PatientDto;
 import com.dental.pos.dto.service.ClinicServiceDto;
 import com.dental.pos.dto.service.ClinicServiceSearchDto;
 import com.dental.pos.entity.ClinicService;
+import com.dental.pos.entity.Patient;
 import com.dental.pos.exception.ClinicServiceNotFoundException;
 import com.dental.pos.repository.clinicService.ClinicServiceRepository;
 import com.dental.pos.service.ServiceClinicService;
@@ -11,7 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -76,6 +80,16 @@ public class ServiceClinicServiceImpl implements ServiceClinicService {
 
     public void deleteClinicService(Long id) {
         clinicServiceRepository.updateByDelFlg(id);
+    }
+
+    @Override
+    public List<ClinicServiceDto> getClinicServiceList() {
+        List<ClinicService> resultList = clinicServiceRepository.getClinicServiceList();
+        List<ClinicServiceDto> clinicServiceDtoList = new ArrayList<>();
+        for (ClinicService clinicService : resultList) {
+            clinicServiceDtoList.add(new ClinicServiceDto(clinicService));
+        }
+        return clinicServiceDtoList ;
     }
 
 }

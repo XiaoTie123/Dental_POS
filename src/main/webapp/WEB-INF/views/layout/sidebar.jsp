@@ -6,6 +6,6 @@
         <li><a href="${pageContext.request.contextPath}/patients"><i class="fas fa-user-injured"></i> <span>Patients</span></a></li>
         <li><a href="${pageContext.request.contextPath}/appointment"><i class="fas fa-calendar-check"></i> <span>Appointments</span></a></li>
         <li><a href="${pageContext.request.contextPath}/clinicService"><i class="fas fa-stethoscope"></i> <span>Clinic Service</span></a></li>
-        <li><a href="${pageContext.request.contextPath}/billing"><i class="fas fa-file-invoice-dollar"></i> <span>Billing</span></a></li>
+        <li><a href="${pageContext.request.contextPath}/bill"><i class="fas fa-file-invoice-dollar"></i> <span>Billing</span></a></li>
     </ul>
 </nav>

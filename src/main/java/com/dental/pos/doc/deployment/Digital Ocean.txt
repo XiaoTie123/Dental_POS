@@ -89,10 +89,12 @@ sudo nginx -s reload
 
 sh startup.sh
 
-Add SSL Certificate using Lets Enrypt
+Add SSL Certificate using Lets Encrypt
 ====================================
 sudo apt install snapd
 
 sudo snap install --classic certbot
+
+ping onedentalclinic.xyz
 
 sudo certbot --nginx -d onedentalclinic.xyz

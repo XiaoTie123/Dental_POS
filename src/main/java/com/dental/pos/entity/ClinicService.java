@@ -30,5 +30,4 @@ public class ClinicService extends BaseEntity {
 
     @Column(name = "amount")
     private Double amount;
-
 }

@@ -8,6 +8,10 @@ public class TableConstants {
 
 	public static final String TBL_APPOINTMENT = "appointment";
 
+	public static final String TBL_BILLING = "bill";
+
+	public static final String TBL_BILLDETAIL = "bill_Detail";
+
 	public static final String TBL_SERVICE = "service";
 
 }
