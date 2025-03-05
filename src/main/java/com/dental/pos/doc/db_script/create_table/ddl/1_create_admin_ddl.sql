@@ -10,6 +10,6 @@ CREATE TABLE `admin` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `role` tinyint(1) NOT NULL COMMENT 'role',
-  `del_flg ` tinyint(1) NOT NULL COMMENT 'del_flg',
+  `del_flg` tinyint(1) NOT NULL COMMENT 'del_flg',
   PRIMARY KEY (`admin_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='admin';

@@ -56,7 +56,7 @@ sudo apt install git
 Git Clone
 =========
 git clone https://XiaoTie123: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@github.com/XiaoTie123/One_Dental_POS.git
-
+https://github.com/XiaoTie123/Dental_POS.git
 Token
 =====
 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
