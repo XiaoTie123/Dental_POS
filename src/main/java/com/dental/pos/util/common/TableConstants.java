@@ -10,7 +10,7 @@ public class TableConstants {
 
 	public static final String TBL_BILLING = "bill";
 
-	public static final String TBL_BILLDETAIL = "bill_Detail";
+	public static final String TBL_BILLDETAIL = "bill_detail";
 
 	public static final String TBL_SERVICE = "service";
 

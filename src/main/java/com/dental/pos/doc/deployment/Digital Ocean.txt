@@ -59,7 +59,7 @@ git clone https://XiaoTie123:github_pat_11A5AMOJA0bfpmXffDKQDk_KaIN4H1YcpOHVsZmC
 https://github.com/XiaoTie123/Dental_POS.git
 Token
 =====
-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
+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
 
 Add Nginx
 =========
@@ -98,3 +98,7 @@ sudo snap install --classic certbot
 ping onedentalclinic.xyz
 
 sudo certbot --nginx -d onedentalclinic.xyz
+
+Git pull
+========
+git pull origin main

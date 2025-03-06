@@ -19,6 +19,8 @@ public class BillDto {
 
     private Long billId;
 
+    private String patientRef;
+
     private Long patientId;
 
     private String patientName;
@@ -70,6 +72,7 @@ public class BillDto {
             this.billId = entity.getBillId();
 
             if(entity.getPatient() != null){
+                this.patientRef = entity.getPatient().getRef();
                 this.patientId = entity.getPatient().getPatientId();
                 this.patientName = entity.getPatient().getName();
                 this.patientContact = entity.getPatient().getPhone();
@@ -107,7 +110,7 @@ public class BillDto {
 
             this.transferDesc = Transfer.getDescriptionByCode(this.transfer);
 
-            this.createdDateTime = CommonUtil.dateToString(CommonConstants.STD_DATE_TIME_FORMAT, entity.getCreatedTime());
+            this.createdDateTime = CommonUtil.dateToString(CommonConstants.MYSQL_DATE_FORMAT, entity.getCreatedTime());
         }
     }
 }
