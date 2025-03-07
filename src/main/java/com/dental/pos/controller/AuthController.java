@@ -1,6 +1,7 @@
 package com.dental.pos.controller;
 
 import com.dental.pos.service.AuthService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +18,14 @@ public class AuthController {
     public String loginPage() {
         return "login";  // This should match the filename "login.jsp" in /WEB-INF/views/
     }
-
+    
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,
-                        Model model) {
+                        Model model, HttpSession session) {
         boolean authenticated = authService.authenticate(email, password);
         if (authenticated) {
+            session.setAttribute("user", email); // Set user email or any user identifier in session
             return "redirect:/dashboard"; // Redirect to dashboard after successful login
         } else {
             model.addAttribute("error", "Invalid email or password");
@@ -37,7 +39,8 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public String logoutPage() {
+    public String logoutPage(HttpSession session) {
+        session.invalidate(); // Clear session
         return "redirect:/login?logout";  // Redirect to login after logout
     }
 }

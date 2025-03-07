@@ -47,4 +47,7 @@ public class CommonUtil {
 		return null;
 	}
 
+	public static boolean validString(String value) {
+		return value != null && !value.trim().isEmpty();
+	}
 }
