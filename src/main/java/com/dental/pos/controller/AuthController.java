@@ -1,8 +1,10 @@
 package com.dental.pos.controller;
 
 import com.dental.pos.service.AuthService;
+import com.dental.pos.util.enums.Doctor;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +36,8 @@ public class AuthController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model) {
+        model.addAttribute("doctorList", Doctor.getAll()); // Empty page instead of error
         return "dashboard";
     }
 
