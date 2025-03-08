@@ -175,37 +175,37 @@ public class BillController {
                 titleGraphics.drawString("1", 90, 835);
                 graphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceName(), 175, 835);
                 titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getQty() + "", 795, 835);
-                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), 965, 835);
+                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc()), 835);
             }
             if(i == 1){
                 titleGraphics.drawString("2", 90, 930);
                 graphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceName(), 175, 930);
                 titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getQty() + "", 795, 930);
-                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), 965, 930);
+                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc()), 930);
             }
             if(i == 2){
                 titleGraphics.drawString("2", 90, 1025);
                 graphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceName(), 175, 1025);
                 titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getQty() + "", 795, 1025);
-                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), 965, 1025);
+                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc()), 1025);
             }
             if(i == 3){
                 titleGraphics.drawString("2", 90, 1120);
                 graphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceName(), 175, 1120);
                 titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getQty() + "", 795, 1120);
-                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), 965, 1120);
+                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc()), 1120);
             }
             if(i == 4){
                 titleGraphics.drawString("2", 90, 1215);
                 graphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceName(), 175, 1215);
                 titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getQty() + "", 795, 1215);
-                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), 965, 1215);
+                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc()), 1215);
             }
             if(i == 5){
                 titleGraphics.drawString("2", 90, 1310);
                 graphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceName(), 175, 1310);
                 titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getQty() + "", 795, 1310);
-                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), 965, 1310);
+                titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc()), 1310);
             }
         }
 
