@@ -163,6 +163,9 @@ public class BillController {
         titleGraphics.setFont(new Font("Arial", Font.BOLD, 30));
         titleGraphics.setColor(Color.BLACK);
 
+        int rightBoundary = 1150;
+        FontMetrics metrics = titleGraphics.getFontMetrics();
+
         titleGraphics.drawString(billDto.getPatientRef(), 57, 570);
         titleGraphics.drawString(billDto.getDoctorName(), 57, 675);
         titleGraphics.drawString(billDto.getCreatedDateTime(), 907, 570);
@@ -206,10 +209,10 @@ public class BillController {
             }
         }
 
-        titleGraphics.drawString(billDto.getTotalAmountDesc(), 960, 1410);
-        titleGraphics.drawString(billDto.getPercentageAmountDesc(), 990, 1490);
-        titleGraphics.drawString(billDto.getTaxAmountDesc(), 990, 1585);
-        titleGraphics.drawString(billDto.getNetAmountDesc(), 960, 1665);
+        titleGraphics.drawString(billDto.getTotalAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getTotalAmountDesc()), 1410);
+        titleGraphics.drawString(billDto.getPercentageAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getPercentageAmountDesc()), 1490);
+        titleGraphics.drawString(billDto.getTaxAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getTaxAmountDesc()), 1585);
+        titleGraphics.drawString(billDto.getNetAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getNetAmountDesc()), 1665);
 
         graphics.dispose();
 
