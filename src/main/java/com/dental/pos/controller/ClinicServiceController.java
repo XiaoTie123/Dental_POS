@@ -2,8 +2,10 @@ package com.dental.pos.controller;
 
 import com.dental.pos.dto.service.ClinicServiceDto;
 import com.dental.pos.dto.service.ClinicServiceSearchDto;
+import com.dental.pos.entity.ClinicService;
 import com.dental.pos.exception.ClinicServiceNotFoundException;
 import com.dental.pos.service.ServiceClinicService;
+import com.dental.pos.util.common.TextConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,9 @@ public class ClinicServiceController {
 
     @Autowired
     private ServiceClinicService serviceClinicService;
+
+    @Autowired
+    private TextConverter textConverter;
 
     @GetMapping
     public String listClinicService(@RequestParam(defaultValue = "0") int page, Model model) {
@@ -59,6 +64,8 @@ public class ClinicServiceController {
     // Save Clinic Service
     @PostMapping("/save")
     public String saveClinicService(@ModelAttribute ClinicServiceDto clinicServiceDto) {
+        String convertedName = textConverter.convert(clinicServiceDto.getName());
+        clinicServiceDto.setName(convertedName);
         serviceClinicService.saveClinicService(clinicServiceDto);
         return "redirect:/clinicService";
     }
