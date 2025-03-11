@@ -7,6 +7,7 @@ import com.dental.pos.exception.BillNotFoundException;
 import com.dental.pos.service.BillService;
 import com.dental.pos.service.PatientService;
 import com.dental.pos.service.ServiceClinicService;
+import com.dental.pos.util.common.TextConverter;
 import com.dental.pos.util.enums.Doctor;
 import com.dental.pos.util.enums.Transfer;
 import jakarta.servlet.ServletContext;
@@ -50,6 +51,9 @@ public class BillController {
 
     @Autowired
     private ServiceClinicService serviceClinicService;
+
+    @Autowired
+    private TextConverter textConverter;
 
     @GetMapping
     public String listBill(@RequestParam(defaultValue = "0") int page, Model model) {
@@ -173,7 +177,7 @@ public class BillController {
         for(int i = 0; billDto.getBillDetailDtoList().size() > i; i++){
             if(i == 0){
                 titleGraphics.drawString("1", 90, 835);
-                graphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceName(), 175, 835);
+                graphics.drawString(textConverter.convert(billDto.getBillDetailDtoList().get(i).getServiceName()), 175, 835);
                 titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getQty() + "", 795, 835);
                 titleGraphics.drawString(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc(), rightBoundary - metrics.stringWidth(billDto.getBillDetailDtoList().get(i).getServiceAmountDesc()), 835);
             }

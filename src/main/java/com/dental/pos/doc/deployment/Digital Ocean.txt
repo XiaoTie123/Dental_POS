@@ -59,7 +59,6 @@ git clone https://github_pat_11A5AMOJA0saYozsgzpUNS_bXG1aGz3tu5JeIenrLRR0cpX50AE
 
 Token
 =====
-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
 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
 Add Nginx
 =========
