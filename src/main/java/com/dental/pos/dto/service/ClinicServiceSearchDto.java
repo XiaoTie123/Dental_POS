@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ClinicServiceSearchDto {
 
-    private String name;
+    private String searchName;
+    private String searchDesc;
 
 }

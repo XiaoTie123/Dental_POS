@@ -24,15 +24,16 @@
                     <!-- Search Form -->
                     <form id="searchForm" class="mb-4">
                         <div class="row">
-                            <div class="col-md-3">
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Search by Clinic Service">
+                            <div class="col-md-4">
+                                <input type="text" id="searchName" name="searchName" class="form-control" placeholder="Search by Clinic Service">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <input type="text" id="searchDesc" name="searchDesc" class="form-control" placeholder="Search by Contact">
                             </div>
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary w-100">Search</button>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <button type="button" id="resetBtn" class="btn btn-secondary w-100">Reset</button>
                             </div>
                         </div>
@@ -127,4 +128,4 @@
     </div>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/layout/footer.jsp" />
-<script src="${pageContext.request.contextPath}/static/js/clinicService/ClinicServiceSearch.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/clinicService/clinicServiceSearch.js?modified=12336"></script>

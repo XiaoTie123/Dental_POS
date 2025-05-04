@@ -1,12 +1,14 @@
 $(document).ready(function() {
     function fetchClinicService(page) {
-        let name = $("#name").val();
+        let searchName = $("#searchName").val();
+        let searchDesc = $("#searchDesc").val();
 
         $.ajax({
             type: "POST",
             url: "clinicService/search?page=" + page,
             data: {
-                name: name
+                searchName: searchName,
+                searchDesc: searchDesc
             },
             success: function(data) {
                 $("#clinicServiceTable tbody").html($(data).find("#clinicServiceTable tbody").html());
@@ -33,7 +35,8 @@ $(document).ready(function() {
 
     // Reset Button Click Event
     $("#resetBtn").click(function() {
-        $("#name").val('');
+        $("#searchName").val('');
+        $("#searchDesc").val('');
         fetchClinicService(0);
     });
 });

@@ -171,7 +171,7 @@ public class BillController {
         FontMetrics metrics = titleGraphics.getFontMetrics();
 
         titleGraphics.drawString(billDto.getPatientRef(), 57, 570);
-        titleGraphics.drawString(billDto.getDoctorName(), 57, 675);
+        titleGraphics.drawString(billDto.getPatientName(), 57, 675);
         titleGraphics.drawString(billDto.getCreatedDateTime(), 907, 570);
 
         for(int i = 0; billDto.getBillDetailDtoList().size() > i; i++){

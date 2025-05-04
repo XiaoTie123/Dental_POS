@@ -113,7 +113,7 @@ public class BillServiceImpl implements BillService {
                 .map(detail -> {
                     ClinicService service = clinicServiceRepository.getById(detail.getServiceId());
                     return new BillDetailDto(service.getServiceId(), service.getName(),
-                            (int) Math.round(service.getAmount()), detail.getQty());
+                            (int) Math.round(detail.getServiceAmount()), detail.getQty());
                 })
                 .collect(Collectors.toList());
     }

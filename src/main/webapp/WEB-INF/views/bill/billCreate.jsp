@@ -80,9 +80,10 @@
                                                                     <select name="billDetailDtoList[${status.index}].serviceId" class="form-control">
                                                                         <option value="">Select Clinic Service</option>
                                                                         <c:forEach items="${clinicServiceList}" var="clinicService">
-                                                                            <option value="${clinicService.serviceId}" ${detail.serviceId == clinicService.serviceId ? 'selected' : ''}>${clinicService.name} - ${clinicService.amountDesc}</option>
+                                                                            <option value="${clinicService.serviceId}" ${detail.serviceId == clinicService.serviceId ? 'selected' : ''}>${clinicService.name} - ${clinicService.description} ( ${clinicService.amountDesc} )</option>
                                                                         </c:forEach>
                                                                     </select>
+                                                                    <input type="number" style="margin-top: 10px;" name="billDetailDtoList[${status.index}].serviceAmount" placeholder="Amount" class="form-control" value="${detail.serviceAmount}">
                                                                     <input type="number" style="margin-top: 10px;" name="billDetailDtoList[${status.index}].qty" placeholder="Quantity" class="form-control" value="${detail.qty}">
                                                                     <button type="submit" formaction="${pageContext.request.contextPath}/bill/removeServiceLine/${status.index}" class="btn btn-danger" style="margin-top: 10px;">Remove</button>
                                                                 </div>

@@ -35,7 +35,7 @@ public class ServiceClinicServiceImpl implements ServiceClinicService {
 
     @Override
     public Page<ClinicServiceDto> searchClinicService(ClinicServiceSearchDto searchDto, Pageable pageable) {
-        Page<ClinicService> clinicServicePage = clinicServiceRepository.searchClinicService(searchDto.getName(), pageable);
+        Page<ClinicService> clinicServicePage = clinicServiceRepository.searchClinicService(searchDto.getSearchName(), pageable);
 
         if (clinicServicePage.isEmpty()) {
             throw new ClinicServiceNotFoundException("No active clinic service found for the given search criteria.");
