@@ -12,7 +12,7 @@ import lombok.Getter;
 @Getter
 public enum Doctor {
 
-	ZAW(1, "Dr. Zaw Myo Htet"), YE(2, "Dr. Ye Min Maung"), THI(3, "Dr. Ye Thiha"), MYO(4, "Dr. Myo Wai Yan");
+	ZAW(1, "Dr. Zaw Myo Htet"), YE(2, "Dr. Ye Min Maung"), THI(3, "Dr. Ye Thiha"), MYO(4, "Dr. Min Khant Thu (Specialist)");
 	private int code;
 	private String desc;
 
