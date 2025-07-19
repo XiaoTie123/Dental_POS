@@ -40,4 +40,6 @@ public class BillDetail extends BaseEntity {
     @Column(name = "total_amount")
     private Double totalAmount;
 
+    @Column(name = "currency")
+    public Integer currency;
 }

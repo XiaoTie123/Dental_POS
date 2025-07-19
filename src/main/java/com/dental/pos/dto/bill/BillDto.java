@@ -3,6 +3,7 @@ package com.dental.pos.dto.bill;
 import com.dental.pos.entity.Bill;
 import com.dental.pos.util.common.CommonConstants;
 import com.dental.pos.util.common.CommonUtil;
+import com.dental.pos.util.enums.Currency;
 import com.dental.pos.util.enums.Doctor;
 import com.dental.pos.util.enums.Transfer;
 import lombok.AllArgsConstructor;
@@ -63,6 +64,8 @@ public class BillDto {
 
     private Long serviceId;
 
+    private Integer currency;
+
     private List<BillDetailDto> billDetailDtoList = new ArrayList<>();
 
     public BillDto(Bill entity) {
@@ -88,19 +91,19 @@ public class BillDto {
 
             this.totalAmount = (int)Math.round(entity.getTotalAmount() );
 
-            this.totalAmountDesc = CommonUtil.formatNumberDouble(entity.getTotalAmount()) + " MMK";
+            this.totalAmountDesc = CommonUtil.formatNumberDouble(entity.getTotalAmount()) + " " + Currency.getDescriptionByCode(entity.getCurrency());
 
             this.taxAmount = (int)Math.round(entity.getTaxAmount() );
 
-            this.taxAmountDesc = CommonUtil.formatNumberDouble(entity.getTaxAmount()) + " MMK";
+            this.taxAmountDesc = CommonUtil.formatNumberDouble(entity.getTaxAmount()) + " " + Currency.getDescriptionByCode(entity.getCurrency());
 
             this.percentageAmount = (int)Math.round(entity.getPercentageAmount() );
 
-            this.percentageAmountDesc = CommonUtil.formatNumberDouble(entity.getPercentageAmount()) + " MMK";
+            this.percentageAmountDesc = CommonUtil.formatNumberDouble(entity.getPercentageAmount()) + " " + Currency.getDescriptionByCode(entity.getCurrency());
 
             this.netAmount = (int)Math.round(entity.getNetAmount() );
 
-            this.netAmountDesc = CommonUtil.formatNumberDouble(entity.getNetAmount()) + " MMK";
+            this.netAmountDesc = CommonUtil.formatNumberDouble(entity.getNetAmount()) + " " + Currency.getDescriptionByCode(entity.getCurrency());
 
             this.tax = entity.getTax();
 

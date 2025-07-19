@@ -49,4 +49,7 @@ public class Bill extends BaseEntity {
 
     @Column(name = "transfer")
     private Integer transfer;
+
+    @Column(name = "currency")
+    private Integer currency;
 }

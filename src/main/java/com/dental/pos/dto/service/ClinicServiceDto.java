@@ -3,6 +3,7 @@ package com.dental.pos.dto.service;
 import com.dental.pos.entity.ClinicService;
 import com.dental.pos.util.common.CommonConstants;
 import com.dental.pos.util.common.CommonUtil;
+import com.dental.pos.util.enums.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,10 @@ public class ClinicServiceDto {
 
     private String createdDateTime;
 
+    private Integer currency;
+
+    private String currencyDesc;
+
     public ClinicServiceDto(ClinicService entity) {
 
         if (entity != null) {
@@ -36,10 +41,11 @@ public class ClinicServiceDto {
 
             this.amount = (int)Math.round(entity.getAmount() );
 
-            this.amountDesc = CommonUtil.formatNumberDouble(entity.getAmount()) + " MMK";
-
+            this.amountDesc = CommonUtil.formatNumberDouble(entity.getAmount()) + " " + Currency.getDescriptionByCode(entity.getCurrency());
 
             this.createdDateTime = CommonUtil.dateToString(CommonConstants.MYSQL_DATE_FORMAT, entity.getCreatedTime());
+
+            this.currency = entity.getCurrency();
 
         }
     }

@@ -8,6 +8,7 @@ import com.dental.pos.service.BillService;
 import com.dental.pos.service.PatientService;
 import com.dental.pos.service.ServiceClinicService;
 import com.dental.pos.util.common.TextConverter;
+import com.dental.pos.util.enums.Currency;
 import com.dental.pos.util.enums.Doctor;
 import com.dental.pos.util.enums.Transfer;
 import jakarta.servlet.ServletContext;
@@ -96,6 +97,7 @@ public class BillController {
         model.addAttribute("doctorList", Doctor.getAll());
         model.addAttribute("transferList", Transfer.getAll());
         model.addAttribute("clinicServiceList", serviceClinicService.getClinicServiceList());
+        model.addAttribute("currencyList", Currency.getAll());
         return "bill/billCreate";
     }
 
@@ -107,6 +109,7 @@ public class BillController {
         model.addAttribute("doctorList", Doctor.getAll());
         model.addAttribute("transferList", Transfer.getAll());
         model.addAttribute("clinicServiceList", serviceClinicService.getClinicServiceList());
+        model.addAttribute("currencyList", Currency.getAll());
         return "bill/billCreate";
     }
 
@@ -120,6 +123,7 @@ public class BillController {
         model.addAttribute("doctorList", Doctor.getAll());
         model.addAttribute("transferList", Transfer.getAll());
         model.addAttribute("clinicServiceList", serviceClinicService.getClinicServiceList());
+        model.addAttribute("currencyList", Currency.getAll());
         return "bill/billCreate";
     }
 

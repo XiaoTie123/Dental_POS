@@ -1,6 +1,7 @@
 package com.dental.pos.dto.bill;
 
 import com.dental.pos.util.common.CommonUtil;
+import com.dental.pos.util.enums.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,14 @@ public class BillDetailDto {
 
     private Integer qty;
 
-    public BillDetailDto(Long serviceId, String serviceName, Integer serviceAmount, Integer qty) {
+    private Integer currency;
+
+    public BillDetailDto(Long serviceId, String serviceName, Integer serviceAmount, Integer qty, Integer currency) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.serviceAmount = serviceAmount;
-        this.serviceAmountDesc = CommonUtil.formatNumberDouble(serviceAmount) + " MMK";
+        this.serviceAmountDesc = CommonUtil.formatNumberDouble(serviceAmount) + " " + Currency.getDescriptionByCode(currency);
         this.qty = qty;
+        this.currency = currency;
     }
-
 }

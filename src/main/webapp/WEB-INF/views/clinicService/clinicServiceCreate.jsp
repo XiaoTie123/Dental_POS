@@ -44,6 +44,15 @@
                                                             <label for="description">Description:</label>
                                                             <input type="text" id="description" name="description" class="form-control" required>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label for="currency">Currency:</label>
+                                                            <select id="currency" name="currency" class="form-control" required>
+                                                                <option value="">Select Currency</option>
+                                                                <c:forEach var="currency" items="${currencyList}">
+                                                                    <option value="${currency.code}">${currency.desc}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
 

@@ -30,4 +30,7 @@ public class ClinicService extends BaseEntity {
 
     @Column(name = "amount")
     private Double amount;
+
+    @Column(name = "currency")
+    private Integer currency;
 }

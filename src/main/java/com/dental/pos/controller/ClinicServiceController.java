@@ -2,10 +2,10 @@ package com.dental.pos.controller;
 
 import com.dental.pos.dto.service.ClinicServiceDto;
 import com.dental.pos.dto.service.ClinicServiceSearchDto;
-import com.dental.pos.entity.ClinicService;
 import com.dental.pos.exception.ClinicServiceNotFoundException;
 import com.dental.pos.service.ServiceClinicService;
 import com.dental.pos.util.common.TextConverter;
+import com.dental.pos.util.enums.Currency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,8 +40,8 @@ public class ClinicServiceController {
 
     @PostMapping("/search")
     public String searchClinicService(@ModelAttribute("searchDto") ClinicServiceSearchDto searchDto,
-                                 @RequestParam(defaultValue = "0") int page,
-                                 Model model) {
+                                      @RequestParam(defaultValue = "0") int page,
+                                      Model model) {
         int pageSize = 10;
 
         try {
@@ -58,6 +58,7 @@ public class ClinicServiceController {
     @GetMapping("/create")
     public String createClinicServiceForm(Model model) {
         model.addAttribute("clinicService", new ClinicServiceDto());
+        model.addAttribute("currencyList", Currency.getAll());
         return "clinicService/clinicServiceCreate";
     }
 
@@ -76,6 +77,7 @@ public class ClinicServiceController {
         Optional<ClinicServiceDto> clinicServiceDto = serviceClinicService.getClinicServiceById(id);
         if (clinicServiceDto.isPresent()) {
             model.addAttribute("clinicService", clinicServiceDto.get());
+            model.addAttribute("currencyList", Currency.getAll());
             return "clinicService/clinicServiceEdit";
         }
         return "redirect:/clinicService";

@@ -55,11 +55,12 @@ sudo apt install git
 
 Git Clone
 =========
-git clone https://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@github.com/XiaoTie123/Dental_POS.git
+git clone https://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@github.com/XiaoTie123/Dental_POS.git
 
 Token
 =====
-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
+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
+
 Add Nginx
 =========
 sudo vi /etc/nginx/sites-available/onedentalclinic.xyz

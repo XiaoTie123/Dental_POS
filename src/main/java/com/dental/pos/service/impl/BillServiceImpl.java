@@ -76,7 +76,8 @@ public class BillServiceImpl implements BillService {
                         billDetail.getServiceId().getServiceId(), // Assuming getServiceId() returns a ClinicService with ID
                         billDetail.getServiceName(),
                         (int) Math.round(billDetail.getServiceAmount()),
-                        billDetail.getQty()))
+                        billDetail.getQty(),
+                        billDetail.getCurrency()))
                 .collect(Collectors.toList());
 
         // Set the detailed list into the BillDto
@@ -113,7 +114,7 @@ public class BillServiceImpl implements BillService {
                 .map(detail -> {
                     ClinicService service = clinicServiceRepository.getById(detail.getServiceId());
                     return new BillDetailDto(service.getServiceId(), service.getName(),
-                            (int) Math.round(detail.getServiceAmount()), detail.getQty());
+                            (int) Math.round(detail.getServiceAmount()), detail.getQty(), detail.getCurrency());
                 })
                 .collect(Collectors.toList());
     }
@@ -149,6 +150,7 @@ public class BillServiceImpl implements BillService {
                 .transfer(billDto.getTransfer())
                 .taxAmount(tax)
                 .percentageAmount(percentage)
+                .currency(billDto.getCurrency())
                 .createdTime(new Date())
                 .updatedTime(new Date())
                 .delFlg(0)
@@ -168,6 +170,7 @@ public class BillServiceImpl implements BillService {
                     .serviceAmount(detail.getServiceAmount().doubleValue())
                     .totalAmount((detail.getServiceAmount().doubleValue()) * detail.getQty())
                     .qty(detail.getQty())
+                    .currency(detail.getCurrency())
                     .createdTime(new Date())
                     .updatedTime(new Date())
                     .delFlg(0)

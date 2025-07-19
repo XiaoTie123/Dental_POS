@@ -61,6 +61,7 @@ public class ServiceClinicServiceImpl implements ServiceClinicService {
                 .name(clinicServiceDto.getName())
                 .description(clinicServiceDto.getDescription())
                 .amount(clinicServiceDto.getAmount().doubleValue())
+                .currency(clinicServiceDto.getCurrency())
                 .createdTime(new Date())
                 .updatedTime(new Date())
                 .delFlg(0)
@@ -74,6 +75,7 @@ public class ServiceClinicServiceImpl implements ServiceClinicService {
         clinicService.setName(clinicServiceDto.getName());
         clinicService.setDescription(clinicServiceDto.getDescription());
         clinicService.setAmount(clinicServiceDto.getAmount().doubleValue());
+        clinicService.setCurrency(clinicServiceDto.getCurrency());
         clinicService.setUpdatedTime(new Date());
         clinicServiceRepository.save(clinicService);
     }

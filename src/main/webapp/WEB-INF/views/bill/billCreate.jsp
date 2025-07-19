@@ -74,6 +74,16 @@
                                                         </div>
 
                                                         <div class="form-group">
+                                                            <label for="currency">Currency:</label>
+                                                            <select id="currency" name="currency" class="form-control" required>
+                                                                <option value="">Select Currency</option>
+                                                                <c:forEach var="currency" items="${currencyList}">
+                                                                    <option value="${currency.code}" ${currency.code == bill.currency ? 'selected' : ''}>${currency.desc}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
                                                             <c:forEach items="${bill.billDetailDtoList}" var="detail" varStatus="status">
                                                                 <div class="serviceEntry">
                                                                     <label>Clinic Service:</label>
@@ -81,6 +91,12 @@
                                                                         <option value="">Select Clinic Service</option>
                                                                         <c:forEach items="${clinicServiceList}" var="clinicService">
                                                                             <option value="${clinicService.serviceId}" ${detail.serviceId == clinicService.serviceId ? 'selected' : ''}>${clinicService.name} - ${clinicService.description} ( ${clinicService.amountDesc} )</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                    <select style="margin-top: 10px;" name="billDetailDtoList[${status.index}].currency" class="form-control">
+                                                                        <option value="">Select Currency</option>
+                                                                        <c:forEach items="${currencyList}" var="currency">
+                                                                            <option value="${currency.code}" ${detail.currency == currency.code ? 'selected' : ''}>${currency.desc}</option>
                                                                         </c:forEach>
                                                                     </select>
                                                                     <input type="number" style="margin-top: 10px;" name="billDetailDtoList[${status.index}].serviceAmount" placeholder="Amount" class="form-control" value="${detail.serviceAmount}">
